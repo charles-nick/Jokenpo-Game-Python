@@ -1,0 +1,78 @@
+''' This is the Jokenpo Game. It must be played between one player and the computer in a randomic method.
+    Goal: Use a random library from Python documentations available in Python.org
+'''
+
+import random
+import emoji
+from time import sleep
+
+print("*****************")
+print("P = Paper")
+print("R = Rock")
+print("S = Scissor")
+print("*****************")
+
+vezes = int(input("How many times would you like to play? [1/2/3]: "))
+
+if vezes != 1 and vezes != 2 and vezes != 3:
+    print("You have only three choices => [1/2/3]")
+else:
+    c = 0
+    you = 0
+    machine = 0
+    while c != vezes:
+        player = input("\nChose one of the three options above (P/R/S): ").upper()
+
+        if player != 'P' and player != 'R' and player != 'S':
+            print("\nPlease, type only 'P' or 'R' or 'S'.")
+
+        else:
+            c+=1
+            if (player == 'p' or player == 'P'):
+                player = 'Paper  '
+            if (player == 'r' or player == 'R'):
+                player = 'Rock   '
+            if (player == 's' or player == 'S'):
+                player = 'Scissor'
+
+            print("\n>>       You choose: ", player, " <<")
+
+            computer = random.choice(['Paper  ','Rock   ','Scissor'])
+
+            print(">>  Computer choose: ",computer, " <<")
+
+            if (player == 'Rock   '):
+                if (computer == 'Rock   '):
+                    print("\nDraw the match!")
+                elif (computer == 'Scissor'):
+                    print(emoji.emojize("\nYou Win! :thumbsup:", use_aliases=True))
+                    you = you + 1
+                else:
+                    print(emoji.emojize("\nYou lose! :thumbsdown:", use_aliases=True))
+                    machine = machine + 1
+            elif (player == 'Scissor'):
+                if (computer == 'Scissor'):
+                    print("\nDraw the match!")
+                elif (computer == 'Paper  '):
+                    print(emoji.emojize("\nYou Win! :thumbsup:", use_aliases=True))
+                    you = you + 1
+                else:
+                    print(emoji.emojize("\nYou lose! :thumbsdown:", use_aliases=True))
+                    machine = machine + 1
+            else:
+                if (computer == 'Paper  '):
+                    print("\nDraw the match!")
+                elif (computer == 'Rock   '):
+                    print(emoji.emojize("\nYou Win! :thumbsup:", use_aliases=True))
+                    you = you + 1
+                else:
+                    print(emoji.emojize("\nYou lose! :thumbsdown:", use_aliases=True))
+                    machine = machine + 1
+
+    sleep(0.5)
+    print("\n{}**** Final Score ****{}".format('\033[31;43m', '\033[m'))
+    print("{}*********************{}".format('\033[31;43m', '\033[m'))
+    print("{}* {}{} YOU x MACHINE {}{} *{}".format('\033[31;43m', '\033[7;31;43m', you, machine, '\033[31;43m', '\033[m'))
+    print("{}*********************{}".format('\033[31;43m', '\033[m'))
+    sleep(0.5)
+    print("\n{}   GAME  FINISHED!   {}".format('\033[7m', '\033[m'))
